@@ -5,3 +5,8 @@ license          'All rights reserved'
 description      'Installs/Configures chef-nodeapp'
 long_description 'Installs/Configures chef-nodeapp'
 version          '0.1.0'
+
+depends "apt"
+depends "nodejs"
+depends "postgresql"
+depends "database"

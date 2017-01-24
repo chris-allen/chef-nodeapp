@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "nodeapp-berkshelf"
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :forwarded_port, guest: 1337, host: 8000
+  config.vm.network :forwarded_port, guest: 3000, host: 8000
   config.vm.network :public_network, bridge: "en1: Wi-Fi (AirPort)"
   config.vm.boot_timeout = 120
 

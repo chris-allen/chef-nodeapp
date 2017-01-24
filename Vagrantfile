@@ -48,6 +48,7 @@ Vagrant.configure("2") do |config|
     chef.run_list = [
       "recipe[chef-nodeapp::system]",
       "recipe[chef-nodeapp::dev_database]",
+      "recipe[chef-nodeapp::express]"
     ]
   end
 end

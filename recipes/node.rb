@@ -31,7 +31,7 @@ nodejs_npm "npm-install" do
   json true
 end
 
-# bash "migrate" do
-#   code "sequelize db:migrate"
-#   cwd "/home/#{user}/nodeapp/nodeapp"
-# end
+bash "migrate" do
+  code "sequelize db:migrate"
+  cwd "/home/#{user}/nodeapp/nodeapp/api"
+end

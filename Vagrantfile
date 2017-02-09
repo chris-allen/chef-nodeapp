@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/trusty64"
 
   config.vm.network :forwarded_port, guest: 3000, host: 8000
+  config.vm.network :forwarded_port, guest: 3001, host: 3001
   config.vm.network :public_network, bridge: "en1: Wi-Fi (AirPort)"
   config.vm.boot_timeout = 120
 
@@ -48,7 +49,7 @@ Vagrant.configure("2") do |config|
     chef.run_list = [
       "recipe[chef-nodeapp::system]",
       "recipe[chef-nodeapp::dev_database]",
-      "recipe[chef-nodeapp::express]"
+      "recipe[chef-nodeapp::node]"
     ]
   end
 end

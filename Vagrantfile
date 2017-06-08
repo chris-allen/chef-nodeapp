@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "nodeapp-berkshelf"
   config.vm.box = "ubuntu/trusty64"
 
+  # config.vm.network :forwarded_port, guest: 80, host: 8000
   config.vm.network :forwarded_port, guest: 3000, host: 8000
   config.vm.network :forwarded_port, guest: 3001, host: 3001
   config.vm.network :public_network, bridge: "en1: Wi-Fi (AirPort)"
@@ -37,8 +38,16 @@ Vagrant.configure("2") do |config|
     chef.log_level = :fatal
     # Sets password for the postgres user
     chef.json = {
-      "vagrant" => {
-        "symlink_npm" => (RbConfig::CONFIG["host_os"] =~ /cygwin|mswin|mingw/) ? true : false
+      'vagrant' => {
+        'app' => {
+          'domains' => ['localhost:8000'],
+          'environment' => {
+            "DEBUG": true,
+            "DATABASE_HOST": "127.0.0.1",
+            "DATABASE_USER": "postgres",
+            "DATABASE_PASSWORD": "password"
+          }
+        }
       },
       "postgresql" => {
         "password" => {

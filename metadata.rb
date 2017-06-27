@@ -9,6 +9,5 @@ version          '0.1.0'
 depends "apt"
 depends "nodejs"
 depends "supervisord"
-# depends "pm2"
 depends "postgresql"
 depends "database"

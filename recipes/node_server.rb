@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# include_recipe 'pm2'
-
 if Dir.exists? '/home/vagrant'
   user = 'vagrant'
 else
@@ -17,14 +15,6 @@ end
 
 app = node.attribute?('vagrant') ? node['vagrant']['app'] : search('aws_opsworks_app').first
 domain = app['domains'][0]
-
-# pm2_application 'unotes' do
-#   script 'server.sh'
-#   cwd "/home/#{user}/nodeapp/nodeapp"
-#   user "#{user}"
-#   home "/home/#{user}/.pm2"
-#   action [:deploy, :start_or_restart]
-# end
 
 directory "/var/log/nodeapp" do
   recursive true
@@ -54,7 +44,7 @@ supervisord_program "node-server" do
   stderr_logfile_backups 88
   stderr_events_enabled true
   stderr_syslog true
-  # environment "PYTHONPATH=/home/#{user}/mobileserve-web-app/mobileserve"
+  environment "HOME=/home/#{user}"
   directory "/home/#{user}/nodeapp/nodeapp"
   serverurl '/tmp/supervisor.sock'
 end
